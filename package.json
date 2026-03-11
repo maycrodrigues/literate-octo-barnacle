@@ -1,5 +1,5 @@
 {
-  "name": "clinica-api-v1",
+  "name": "gabinete-online-api-v1",
   "version": "1.0.1",
   "private": true,
   "main": "dist/server.js",
@@ -39,6 +39,6 @@
     "vitest": "^1.4.0"
   },
   "engines": {
-    "node": ">=18"
+    "node": ">=18 <21"
   }
 }

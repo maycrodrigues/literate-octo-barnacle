@@ -13,6 +13,8 @@ export async function connectToDatabase() {
     const mongodbUri = requireMongoDbUri();
     const opts = {
       bufferCommands: false,
+      serverSelectionTimeoutMS: 10000,
+      connectTimeoutMS: 10000,
     };
 
     cachedPromise = mongoose.connect(mongodbUri, opts).then((mongooseInstance: typeof mongoose) => {

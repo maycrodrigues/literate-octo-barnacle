@@ -1,8 +1,21 @@
 type LogLevel = 'info' | 'warn' | 'error';
 type LogMeta = Record<string, unknown> | undefined;
 
+const errorToJson = (error: Error) => {
+  return {
+    name: error.name,
+    message: error.message,
+    stack: error.stack,
+  };
+};
+
+const jsonReplacer = (_key: string, value: unknown) => {
+  if (value instanceof Error) return errorToJson(value);
+  return value;
+};
+
 const writeLog = (level: LogLevel, payload: Record<string, unknown>) => {
-  const line = JSON.stringify(payload);
+  const line = JSON.stringify(payload, jsonReplacer);
   if (level === 'error') {
     console.error(line);
     return;
